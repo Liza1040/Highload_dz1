@@ -116,3 +116,138 @@ All cores are used. Use ```ps -mo pid,tid,%cpu,psr -p `pgrep python` ``` while p
     OK
   </code>
 </details>
+
+----------------------
+# Highload testing
+### Using Apache Benchmark
+Download ab: `sudo apt-get install apache2-utils`
+Using: `ab -n requests -c at_same address`
+
+## This server:80
+Test:
+`ab -n 10000 -c 20 127.0.0.1:8080/httptest/wikipedia_russia.html`
+
+<details>
+(click to see all)</summary>
+<code>
+
+    This is ApacheBench, Version 2.3 <$Revision: 1807734 $>
+    Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+    Licensed to The Apache Software Foundation, http://www.apache.org/
+
+    Benchmarking 127.0.0.1 (be patient)
+    Completed 1000 requests
+    Completed 2000 requests
+    Completed 3000 requests
+    Completed 4000 requests
+    Completed 5000 requests
+    Completed 6000 requests
+    Completed 7000 requests
+    Completed 8000 requests
+    Completed 9000 requests
+    Completed 10000 requests
+    Finished 10000 requests
+
+
+    Server Software:        maksimova
+    Server Hostname:        127.0.0.1
+    Server Port:            8080
+
+    Document Path:          /httptest/wikipedia_russia.html
+    Document Length:        954828 bytes
+
+    Concurrency Level:      20
+    Time taken for tests:   11.012 seconds
+    Complete requests:      10000
+    Failed requests:        0
+    Total transferred:      9550140000 bytes
+    HTML transferred:       9548280000 bytes
+    Requests per second:    908.09 [#/sec] (mean)
+    Time per request:       22.024 [ms] (mean)
+    Time per request:       1.101 [ms] (mean, across all concurrent requests)
+    Transfer rate:          846917.17 [Kbytes/sec] received
+
+    Connection Times (ms)
+                  min  mean[+/-sd] median   max
+    Connect:        0    0   0.4      0      13
+    Processing:     3   22   6.1     21      65
+    Waiting:        0   17   5.0     18      48
+    Total:          4   22   6.1     21      70
+
+    Percentage of the requests served within a certain time (ms)
+      50%     21
+      66%     23
+      75%     24
+      80%     25
+      90%     29
+      95%     33
+      98%     39
+      99%     44
+    100%     70 (longest request)
+</code>
+</details>
+
+## Nginx:90
+
+Test:
+`ab -n 10000 -c 20 127.0.0.1:9090/httptest/wikipedia_russia.html`
+
+<details>
+<code>
+
+    This is ApacheBench, Version 2.3 <$Revision: 1807734 $>
+    Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+    Licensed to The Apache Software Foundation, http://www.apache.org/
+
+    Benchmarking 127.0.0.1 (be patient)
+    Completed 1000 requests
+    Completed 2000 requests
+    Completed 3000 requests
+    Completed 4000 requests
+    Completed 5000 requests
+    Completed 6000 requests
+    Completed 7000 requests
+    Completed 8000 requests
+    Completed 9000 requests
+    Completed 10000 requests
+    Finished 10000 requests
+
+
+    Server Software:        nginx/1.23.3
+    Server Hostname:        127.0.0.1
+    Server Port:            9090
+
+    Document Path:          /httptest/wikipedia_russia.html
+    Document Length:        954824 bytes
+
+    Concurrency Level:      20
+    Time taken for tests:   8.274 seconds
+    Complete requests:      10000
+    Failed requests:        0
+    Total transferred:      9550620000 bytes
+    HTML transferred:       9548240000 bytes
+    Requests per second:    1208.61 [#/sec] (mean)
+    Time per request:       16.548 [ms] (mean)
+    Time per request:       0.827 [ms] (mean, across all concurrent requests)
+    Transfer rate:          1127242.49 [Kbytes/sec] received
+
+    Connection Times (ms)
+                  min  mean[+/-sd] median   max
+    Connect:        0    1   1.3      0      19
+    Processing:     1   16   7.4     15      89
+    Waiting:        0    5   4.2      5      45
+    Total:          2   16   7.7     16      89
+
+    Percentage of the requests served within a certain time (ms)
+      50%     16
+      66%     18
+      75%     20
+      80%     22
+      90%     26
+      95%     30
+      98%     37
+      99%     43
+    100%     89 (longest request)
+
+</code>
+</details>
