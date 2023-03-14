@@ -17,3 +17,16 @@
 * Respond to percent-encoding URLs
 * Correctly serve a 2GB+ files
 * No security vulnerabilities
+
+---------------------------
+# Build docker containers
+
+```
+docker build -t server -f Dockerfile .
+docker run -p 8080:8080 server
+```
+
+```
+docker build -t nginx -f nginx.Dockerfile .
+docker run -p 9090:9090 nginx
+```
