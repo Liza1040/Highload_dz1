@@ -127,7 +127,7 @@ Using: `ab -n requests -c at_same address`
 Test:
 `ab -n 10000 -c 20 127.0.0.1:8080/httptest/wikipedia_russia.html`
 
-<details>
+<details><summary>
 (click to see all)</summary>
 <code>
 
@@ -192,7 +192,8 @@ Test:
 Test:
 `ab -n 10000 -c 20 127.0.0.1:9090/httptest/wikipedia_russia.html`
 
-<details>
+<details><summary>
+(click to see all)</summary>
 <code>
 
     This is ApacheBench, Version 2.3 <$Revision: 1807734 $>
